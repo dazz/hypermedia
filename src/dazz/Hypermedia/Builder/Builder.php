@@ -3,6 +3,7 @@ namespace dazz\Hypermedia\Builder;
 
 use dazz\Hypermedia\Resource\ResourceInterface;
 use dazz\Hypermedia\Link\LinkInterface;
+
 /**
  * Class Builder
  *
@@ -13,31 +14,31 @@ class Builder
     public function build(ResourceInterface $resource, $value)
     {
         $output = [];
+        /** @var LinkInterface $link */
         foreach ($resource->getPossibleLinks() as $link) {
-
             $output[] = [
                 'href' => $this->getUrl($link, $value),
-                'title' => $link->getTitle(),
+                'rel'  => $link->getRelation(),
             ];
         }
 
         return $output;
     }
 
-    private function getUrl($link, $value)
+    private function getUrl(LinkInterface $link, $value)
     {
-        $routePattern = $link->getRoutePattern();
-        foreach ($routePattern['params'] as $param) {
-            $routePattern['pattern'] = str_replace(
+        $pattern = $link->getUriTemplate();
+        foreach ($link->getUriParams() as $param) {
+            $pattern = str_replace(
                 sprintf('{%s}', $param),
                 $this->getValue($value, $param),
-                $routePattern['pattern']
+                $pattern
             );
         }
-        return $routePattern['pattern'];
+        return $pattern;
     }
 
-    public function getValue($value, $name, $default = null)
+    private function getValue($value, $name, $default = null)
     {
         if (is_array($value)) {
             return array_key_exists($name, $value) ? $value[$name] : $default;

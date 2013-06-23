@@ -15,6 +15,7 @@ class PersonResource implements ResourceInterface
         return [
             new PersonLink(),
             new PersonListLink(),
+            new GroupLink(),
         ];
     }
 }

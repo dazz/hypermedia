@@ -6,6 +6,8 @@ class Person
 {
     private $id;
 
+    private $groupId;
+
     /**
      * @param int $id
      */
@@ -17,10 +19,28 @@ class Person
     /**
      * @return int
      */
-    public function getId()
+    public function getUserId()
     {
         return $this->id;
     }
+
+    /**
+     * @param mixed $groupId
+     */
+    public function setGroupId($groupId)
+    {
+        $this->groupId = $groupId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGroupId()
+    {
+        return $this->groupId;
+    }
+
+
 
 
 }

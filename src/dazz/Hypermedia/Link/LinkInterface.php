@@ -3,7 +3,9 @@ namespace  dazz\Hypermedia\Link;
 
 interface LinkInterface
 {
-    public function getRoutePattern();
+    public function getUriTemplate();
 
-    public function getTitle();
+    public function getUriParams();
+
+    public function getRelation();
 }

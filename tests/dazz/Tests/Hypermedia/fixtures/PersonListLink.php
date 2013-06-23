@@ -11,16 +11,18 @@ use dazz\Hypermedia\Link\LinkInterface;
 class PersonListLink implements LinkInterface
 {
 
-    public function getRoutePattern()
+    public function getRelation()
     {
-        return [
-            'pattern' => '/persons',
-            'params' => [],
-        ];
+        return 'users';
     }
 
-    public function getTitle()
+    public function getUriTemplate()
     {
-        return 'person-list';
+        return'/user';
+    }
+
+    public function getUriParams()
+    {
+        return [];
     }
 }

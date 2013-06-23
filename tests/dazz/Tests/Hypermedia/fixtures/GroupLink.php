@@ -3,24 +3,23 @@ namespace dazz\Tests\Hypermedia\fixtures;
 
 use dazz\Hypermedia\Link\LinkInterface;
 
-class PersonLink implements LinkInterface
+class GroupLink implements LinkInterface
 {
 
     public function getUriTemplate()
     {
-        return '/user/{userId}';
+        return '/groups/{groupId}';
     }
 
     public function getUriParams()
     {
         return [
-            'userId'
+            'groupId'
         ];
     }
 
-
     public function getRelation()
     {
-        return 'user';
+        return 'group';
     }
 }
