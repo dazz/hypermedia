@@ -8,10 +8,19 @@ namespace dazz\Hypermedia;
  */
 class Builder
 {
+    /** @var VoterInterface */
+    private $voter;
 
-    public static function createBuilder()
+    public function __construct(VoterInterface $voter)
     {
-        return new Builder();
+        $this->voter = $voter;
+    }
+
+    public static function createBuilder(VoterInterface $voter = null, $token = null)
+    {
+        $voter = $voter ?:new SimpleVoter();
+        $voter->setToken($token);
+        return new Builder($voter);
     }
 
     public function build(ResourceInterface $resource, $value)
@@ -19,6 +28,9 @@ class Builder
         $output = [];
         /** @var LinkInterface $link */
         foreach ($resource->getPossibleLinks() as $link) {
+            if ($this->voter->vote($link->getRelation()) == VoterInterface::DENY) {
+                continue;
+            }
             $output[] = [
                 'href' => $this->getUrl($link, $value),
                 'rel'  => $link->getRelation(),
