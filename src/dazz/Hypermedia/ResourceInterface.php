@@ -1,5 +1,5 @@
 <?php
-namespace dazz\Hypermedia\Resource;
+namespace dazz\Hypermedia;
 
 /**
  * Interface ResourceInterface

@@ -2,7 +2,7 @@
 namespace dazz\Tests\Hypermedia\Builder;
 
 use dazz\Tests\Hypermedia\fixtures;
-use dazz\Hypermedia\Builder\Builder;
+use dazz\Hypermedia\Builder;
 
 class BuilderTest extends \PHPUnit_Framework_TestCase
 {
@@ -14,7 +14,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
 
         $resource = new fixtures\PersonResource();
 
-        $builder = new Builder();
+        $builder = Builder::createBuilder();
         $output = $builder->build($resource, $object);
 
         print_r($output);

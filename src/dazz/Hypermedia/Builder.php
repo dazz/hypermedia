@@ -1,8 +1,5 @@
 <?php
-namespace dazz\Hypermedia\Builder;
-
-use dazz\Hypermedia\Resource\ResourceInterface;
-use dazz\Hypermedia\Link\LinkInterface;
+namespace dazz\Hypermedia;
 
 /**
  * Class Builder
@@ -11,6 +8,12 @@ use dazz\Hypermedia\Link\LinkInterface;
  */
 class Builder
 {
+
+    public static function createBuilder()
+    {
+        return new Builder();
+    }
+
     public function build(ResourceInterface $resource, $value)
     {
         $output = [];

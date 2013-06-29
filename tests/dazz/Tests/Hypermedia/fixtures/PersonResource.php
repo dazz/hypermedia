@@ -1,7 +1,7 @@
 <?php
 namespace dazz\Tests\Hypermedia\fixtures;
 
-use dazz\Hypermedia\Resource\ResourceInterface;
+use dazz\Hypermedia\ResourceInterface;
 
 /**
  * Class Person

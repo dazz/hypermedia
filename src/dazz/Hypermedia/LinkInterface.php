@@ -1,5 +1,5 @@
 <?php
-namespace  dazz\Hypermedia\Link;
+namespace  dazz\Hypermedia;
 
 interface LinkInterface
 {

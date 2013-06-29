@@ -1,7 +1,7 @@
 <?php
 namespace dazz\Tests\Hypermedia\fixtures;
 
-use dazz\Hypermedia\Link\LinkInterface;
+use dazz\Hypermedia\LinkInterface;
 
 class PersonLink implements LinkInterface
 {
