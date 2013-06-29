@@ -17,13 +17,26 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
         $builder = Builder::createBuilder();
         $output = $builder->build($resource, $object);
 
-        print_r($output);
+        $this->assertCount(3, $output);
+    }
 
+    public function testBuildWithVoter()
+    {
         $object = new fixtures\Person();
-        $object->setId(2);
+        $object->setId(1);
         $object->setGroupId(1);
+        $resource = new fixtures\PersonResource();
 
+        $securityToken = new fixtures\SecurityToken('fully');
+        $voter = new fixtures\Voter();
+        $builder = Builder::createBuilder($voter, $securityToken);
         $output = $builder->build($resource, $object);
-        print_r($output);
+        $this->assertCount(3, $output);
+
+        $securityToken = new fixtures\SecurityToken('anonymously');
+        $voter = new fixtures\Voter();
+        $builder = Builder::createBuilder($voter, $securityToken);
+        $output = $builder->build($resource, $object);
+        $this->assertCount(2, $output);
     }
 }
